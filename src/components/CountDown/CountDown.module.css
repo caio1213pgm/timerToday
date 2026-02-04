@@ -1,0 +1,6 @@
+.count {
+  font-size: clamp(8rem, 20vw, 12rem);
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.3;
+}

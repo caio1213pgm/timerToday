@@ -4,6 +4,7 @@ import "./styles/theme.css";
 import BoxContainer from "./components/BoxContainer";
 import LogoTimer from "./components/LogoTimer";
 import Menu from "./components/Menu";
+import CountDown from "./components/CountDown";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       </BoxContainer>
       <BoxContainer textId="menu">
         <Menu />
+      </BoxContainer>
+      <BoxContainer textId="count">
+        <CountDown />
       </BoxContainer>
     </>
   );
