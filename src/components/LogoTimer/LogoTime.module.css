@@ -1,27 +1,27 @@
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 .logoLink {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 4rem;
-    font-weight: bold;
-    color: var(--primary-light);
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--primary-light);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 
 .logoLink:hover {
-    filter: brightness(50%);
+  filter: brightness(80%);
 }
 
 .iconLogo svg {
-    width: 6.4rem;
-    height: 6.4rem;
+  width: 6.4rem;
+  height: 6.4rem;
 }
