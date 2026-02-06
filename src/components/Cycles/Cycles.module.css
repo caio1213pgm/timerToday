@@ -1,0 +1,34 @@
+.boxCycles {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cycles {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.cycleShort,
+.cycleWork,
+.cycleLong {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.cycleShort{
+  background-color: var(--primary);
+}
+
+.cycleWork{
+  background-color: var(--warning);
+}
+
+.cycleLong{
+  background-color: var(--info);
+}
