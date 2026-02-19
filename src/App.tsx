@@ -1,6 +1,7 @@
 import "./styles/global.css";
 import "./styles/theme.css";
 
+import { StopCircle } from "lucide-react";
 import BoxContainer from "./components/BoxContainer";
 import Button from "./components/Button";
 import CountDown from "./components/CountDown";
@@ -29,7 +30,9 @@ function App() {
           </div>
           <Cycles />
           <div>
-            <Button type="submit"></Button>
+            <Button type="submit" variant="primary">
+              <StopCircle />
+            </Button>
           </div>
         </form>
       </BoxContainer>
