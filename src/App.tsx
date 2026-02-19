@@ -9,6 +9,7 @@ import Cycles from "./components/Cycles";
 import Input from "./components/Input";
 import LogoTimer from "./components/LogoTimer";
 import Menu from "./components/Menu";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
             </Button>
           </div>
         </form>
+      </BoxContainer>
+      <BoxContainer textId="footer">
+        <Footer />
       </BoxContainer>
     </>
   );
