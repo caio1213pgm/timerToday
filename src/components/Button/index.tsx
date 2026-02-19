@@ -1,19 +1,19 @@
-import { CirclePlay, StopCircle } from "lucide-react";
 import style from "./Button.module.css";
 
 interface ButtonProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   type: "button" | "submit" | "reset" | undefined;
+  variant?: "primary" | "error";
 }
 
-export default function Button({ children, type }: ButtonProps) {
-  const verifyIcon = type === "submit" ? <CirclePlay /> : <StopCircle />;
+export default function Button({
+  children,
+  type,
+  variant = "primary",
+}: ButtonProps) {
   return (
-    <button
-      className={type === "submit" ? style.buttonSubmit : style.buttonStop}
-      type={type}
-    >
-      {children || verifyIcon}
+    <button className={`${style.button} ${style[variant]}`} type={type}>
+      {children}
     </button>
   );
 }
