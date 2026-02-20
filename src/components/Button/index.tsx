@@ -1,6 +1,7 @@
+import React from "react";
 import style from "./Button.module.css";
 
-interface ButtonProps {
+interface ButtonProps extends React.ComponentProps<"button"> {
   children: React.ReactNode;
   type: "button" | "submit" | "reset" | undefined;
   variant?: "primary" | "error";
