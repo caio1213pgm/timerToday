@@ -22,7 +22,9 @@ export default function Menu() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    return () => {};
   }, [theme]);
+
   return (
     <nav className={style.navBox}>
       <NavButton link="#" icon={<HouseIcon />} tooltip="Home" />
