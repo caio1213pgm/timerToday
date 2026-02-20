@@ -11,9 +11,14 @@ export default function Button({
   children,
   type,
   variant = "primary",
+  ...props
 }: ButtonProps) {
   return (
-    <button className={`${style.button} ${style[variant]}`} type={type}>
+    <button
+      className={`${style.button} ${style[variant]}`}
+      type={type}
+      {...props}
+    >
       {children}
     </button>
   );
