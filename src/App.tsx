@@ -2,6 +2,7 @@ import "./styles/global.css";
 import "./styles/theme.css";
 
 import { StopCircle } from "lucide-react";
+import { useState } from "react";
 import BoxContainer from "./components/BoxContainer";
 import Button from "./components/Button";
 import CountDown from "./components/CountDown";
@@ -12,6 +13,14 @@ import Menu from "./components/Menu";
 import Footer from "./components/layout/Footer";
 
 function App() {
+  const [buttonColor, setButtonColor] = useState<"primary" | "error">(
+    "primary"
+  );
+  function handleClick() {
+    buttonColor === "primary"
+      ? setButtonColor("error")
+      : setButtonColor("primary");
+  }
   return (
     <>
       <BoxContainer textId="header">
@@ -31,7 +40,7 @@ function App() {
           </div>
           <Cycles />
           <div>
-            <Button type="submit" variant="primary">
+            <Button type="button" variant={buttonColor} onClick={handleClick}>
               <StopCircle />
             </Button>
           </div>
