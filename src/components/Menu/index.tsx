@@ -11,17 +11,23 @@ import NavButton from "../NavButton";
 import style from "./Menu.module.css";
 
 export default function Menu() {
-  const [theme, setTheme] = useState<ThemeType>("dark");
+  const [theme, setTheme] = useState<ThemeType>(() => {
+    const storageTheme = localStorage.getItem("theme");
+    return (storageTheme as ThemeType) || "dark";
+  });
+
+  const iconSelectByTheme = theme === "dark" ? <SunIcon /> : <MoonIcon />;
+
   function handleClickModifyTheme(
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) {
     event.preventDefault();
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-    localStorage.setItem("theme", theme);
   }
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
     return () => {};
   }, [theme]);
 
@@ -32,7 +38,7 @@ export default function Menu() {
       <NavButton link="#" icon={<Settings />} tooltip="Settings" />
       <NavButton
         link="#"
-        icon={theme === "dark" ? <SunIcon /> : <MoonIcon />}
+        icon={iconSelectByTheme}
         tooltip="Theme"
         onClick={handleClickModifyTheme}
       />
