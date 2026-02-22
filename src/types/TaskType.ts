@@ -1,3 +1,5 @@
+import type { TaskSateType } from "./TaskStateType";
+
 export type TaskType = {
   id: string;
   name: string;
@@ -5,5 +7,5 @@ export type TaskType = {
   startDate: number;
   completeDate: number | null;
   interruptDate: number | null;
-  type: "work" | "shortBreak" | "longBreak";
+  type: keyof TaskSateType["config"];
 };
