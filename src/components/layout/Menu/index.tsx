@@ -6,8 +6,8 @@ import {
   SunIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import type { ThemeType } from "../../types/themeType";
-import NavButton from "../NavButton";
+import type { ThemeType } from "../../../types/themeType";
+import NavButton from "../../NavButton";
 import style from "./Menu.module.css";
 
 export default function Menu() {
