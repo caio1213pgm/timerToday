@@ -1,7 +1,7 @@
-import BoxContainer from "../components/BoxContainer";
 import Footer from "../components/layout/Footer";
 import Menu from "../components/layout/Menu";
 import LogoTimer from "../components/LogoTimer";
+import BoxContainer from "../components/ui/BoxContainer";
 
 interface DefaultTemplate {
   children: React.ReactNode;

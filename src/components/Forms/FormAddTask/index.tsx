@@ -1,7 +1,7 @@
 import { StopCircle } from "lucide-react";
-import Button from "../../Button";
 import Cycles from "../../Cycles";
-import Input from "../../Input";
+import Button from "../../ui/Button";
+import Input from "../../ui/Input";
 
 export default function FormAddTask() {
   return (
