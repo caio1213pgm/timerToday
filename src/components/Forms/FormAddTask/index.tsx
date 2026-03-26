@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { PlayCircle, StopCircle } from "lucide-react";
 import { nanoid } from "nanoid";
 import { useEffect, useRef, useState } from "react";
@@ -26,11 +27,11 @@ export default function FormAddTask() {
     }
     const newTask: TaskType = {
       name: inputTaskRef.current.value,
-      completeDate: null,
+      completeDate: "",
       duration: taskState.config[getCycleType],
       id: nanoid(),
-      interruptDate: null,
-      startDate: Date.now(),
+      interruptDate: "",
+      startDate: new Date(),
       type: getCycleType,
     };
 
@@ -62,7 +63,7 @@ export default function FormAddTask() {
         if (task.id === taskState.activeTask?.id) {
           return {
             ...task,
-            interruptDate: Date.now(),
+            interruptDate: dayjs().format("DD/MM/YYYY"),
           };
         }
         return task;

@@ -4,8 +4,8 @@ export type TaskType = {
   id: string;
   name: string;
   duration: number;
-  startDate: number;
-  completeDate: number | null;
-  interruptDate: number | null;
+  startDate: string | Date;
+  completeDate: string | Date;
+  interruptDate: string | Date;
   type: keyof TaskSateType["config"];
 };
