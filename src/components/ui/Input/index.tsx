@@ -34,6 +34,7 @@ export default function Input({
         onChange={onChange}
         value={value}
         ref={ref}
+        autoComplete="off"
       />
     </div>
   );
