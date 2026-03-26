@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import type { TaskSateType } from "../types/TaskStateType";
 
 interface TaskProviderProps {
@@ -28,9 +28,9 @@ export default function TaskProvider({ children }: TaskProviderProps) {
     secondsRemaining: 0,
     tasks: [],
   });
-  useEffect(() => {
-    console.log(taskState);
-  }, [taskState]);
+  // useEffect(() => {
+  //   console.log(taskState);
+  // }, [taskState]);
 
   return (
     <TaskContext.Provider value={{ taskState, setTaskState }}>
