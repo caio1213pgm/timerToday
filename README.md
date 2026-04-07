@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# TimerToday
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TimerToday é basicamente um gerenciador de tasks simples e eficiente.
 
-Currently, two official plugins are available:
+Futuramente, o projeto contará com:
+- **Histórico de tasks**
+- **Espaço para anotações**
+- **Conexão com o Firebase** para salvar todas as suas tasks e anotações na nuvem, sem perder nada.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Principais Tecnologias (Stack)
 
-## React Compiler
+- **React** (v19)
+- **TypeScript**
+- **Vite**
+- **Day.js** (Manipulação de datas/tempo)
+- **Lucide React** (Ícones)
+- **CSS Modules** (Estilização)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 📌 Pré-requisitos
 
-## Expanding the ESLint configuration
+- **Node.js**: `v22.17.0` (versão utilizada/recomendada)
+- **Gerenciador de pacotes**: npm, yarn ou pnpm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Como executar o projeto
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+1. Clone o repositório (caso ainda não tenha feito):
+   ```bash
+   git clone <url-do-repositorio>
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+4. Acesse no seu navegador a URL informada no terminal (geralmente `http://localhost:5173`).
