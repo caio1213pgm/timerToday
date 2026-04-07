@@ -2,9 +2,9 @@ import dayjs from "dayjs";
 import { PlayCircle, StopCircle } from "lucide-react";
 import { nanoid } from "nanoid";
 import { useEffect, useRef, useState } from "react";
+import { TaskActionType } from "../../../actions/taskActions";
 import { useTask } from "../../../hooks/useTask";
 import type { TaskType } from "../../../types/TaskType";
-import { formatTime } from "../../../utils/formatTime";
 import { nextCycle } from "../../../utils/nextCycle";
 import { nextTypeCycle } from "../../../utils/nextTypeCycle";
 import Cycles from "../../Cycles";
@@ -12,7 +12,7 @@ import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 
 export default function FormAddTask() {
-  const { setTaskState, taskState } = useTask();
+  const { dispatch, taskState } = useTask();
   const inputTaskRef = useRef<HTMLInputElement>(null);
   const [secconds, setSecconds] = useState(0);
 
@@ -31,19 +31,13 @@ export default function FormAddTask() {
       duration: taskState.config[getCycleType],
       id: nanoid(),
       interruptDate: "",
-      startDate: new Date(),
+      startDate: dayjs().format("DD/MM/YYYY"),
       type: getCycleType,
     };
 
     const secconds = newTask.duration * 60;
-    setTaskState((prev) => ({
-      ...prev,
-      formattedSecondsRemaining: formatTime(secconds),
-      currentCycle: getCycle,
-      activeTask: newTask,
-      secondsRemaining: secconds,
-      tasks: [...prev.tasks, newTask],
-    }));
+    dispatch({ type: TaskActionType.START_TASK, payload: newTask });
+
     setSecconds(secconds);
   }
 
@@ -54,21 +48,10 @@ export default function FormAddTask() {
       return;
     }
     e.preventDefault();
-    setTaskState((prev) => ({
-      ...prev,
-      activeTask: null,
-      secondsRemaining: 0,
-      formattedSecondsRemaining: "00:00",
-      tasks: prev.tasks.map((task) => {
-        if (task.id === taskState.activeTask?.id) {
-          return {
-            ...task,
-            interruptDate: dayjs().format("DD/MM/YYYY"),
-          };
-        }
-        return task;
-      }),
-    }));
+
+    dispatch({
+      type: TaskActionType.STOP_TASK,
+    });
     inputTaskRef.current?.value === "";
   }
 
