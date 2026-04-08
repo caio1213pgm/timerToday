@@ -79,7 +79,7 @@ export default function FormAddTask() {
       <div>
         <p>Próximo ciclo será de {taskState.config[getCycleType]}min</p>
       </div>
-      {taskState.activeTask && <Cycles cicle={getCycle} />}
+      {taskState.currentCycle > 0 && <Cycles cicle={getCycle} />}
       <div>
         <Button
           type={!taskState.activeTask ? "submit" : "button"}
