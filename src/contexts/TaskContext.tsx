@@ -55,6 +55,13 @@ export default function TaskProvider({ children }: TaskProviderProps) {
           }),
         };
       }
+      case TaskActionType.UPDATE_TIME: {
+        return {
+          ...state,
+          secondsRemaining: action.payload,
+          formattedSecondsRemaining: formatTime(action.payload),
+        };
+      }
       default:
         return state;
     }

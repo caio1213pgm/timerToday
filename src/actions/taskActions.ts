@@ -3,8 +3,7 @@ import type { TaskType } from "../types/TaskType";
 export enum TaskActionType {
   START_TASK = "START_TASK",
   STOP_TASK = "STOP_TASK",
-  CANCEL_TASK = "CANCEL_TASK",
-  UPDATE_TASK = "UPDATE_TASK",
+  UPDATE_TIME = "UPDATE_TIME",
 }
 
 export type TaskActionModel =
@@ -14,4 +13,8 @@ export type TaskActionModel =
     }
   | {
       type: TaskActionType.STOP_TASK;
+    }
+  | {
+      type: TaskActionType.UPDATE_TIME;
+      payload: number;
     };
