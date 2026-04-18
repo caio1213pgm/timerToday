@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { PlayCircle, StopCircle } from "lucide-react";
 import { nanoid } from "nanoid";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { TaskActionType } from "../../../actions/taskActions";
 import { useTask } from "../../../hooks/useTask";
 import type { TaskType } from "../../../types/TaskType";
@@ -14,7 +14,6 @@ import Input from "../../ui/Input";
 export default function FormAddTask() {
   const { dispatch, taskState } = useTask();
   const inputTaskRef = useRef<HTMLInputElement>(null);
-  const [secconds, setSecconds] = useState(0);
 
   const getCycle = nextCycle(taskState.currentCycle);
   const getCycleType = nextTypeCycle(getCycle);
@@ -31,14 +30,10 @@ export default function FormAddTask() {
       duration: taskState.config[getCycleType],
       id: nanoid(),
       interruptDate: "",
-      startDate: dayjs().format("DD/MM/YYYY"),
+      startDate: dayjs().format("DD/MM/YYYY - HH:mm"),
       type: getCycleType,
     };
-
-    const secconds = newTask.duration * 60;
     dispatch({ type: TaskActionType.START_TASK, payload: newTask });
-
-    setSecconds(secconds);
   }
 
   function handleCancelTask(
@@ -55,18 +50,6 @@ export default function FormAddTask() {
     inputTaskRef.current?.value === "";
   }
 
-  useEffect(() => {
-    if (taskState.activeTask) {
-      // setTimeout(() => {
-      //   setSecconds((prev) => prev - 1);
-      //   setTaskState((prev) => ({
-      //     ...prev,
-      //     formattedSecondsRemaining: formatTime(secconds),
-      //   }));
-      // }, 1000);
-    }
-  }, [secconds, taskState.activeTask]);
-
   return (
     <form className="formGroup" onSubmit={handleSubmit}>
       <Input
@@ -77,7 +60,7 @@ export default function FormAddTask() {
         disabled={!!taskState.activeTask}
       />
       <div>
-        <p>Próximo ciclo será de {taskState.config[getCycleType]}min</p>
+        <p>Próximo ciclo será de {taskState?.config?.[getCycleType]}min</p>
       </div>
       {taskState.currentCycle > 0 && <Cycles cicle={getCycle} />}
       <div>
