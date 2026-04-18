@@ -1,9 +1,10 @@
 import dayjs from "dayjs";
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { TaskActionType, type TaskActionModel } from "../actions/taskActions";
 import type { TaskSateType } from "../types/TaskStateType";
 import { formatTime } from "../utils/formatTime";
 import { nextCycle } from "../utils/nextCycle";
+import { TimerWorkerManager } from "../workers/TimerWorkerManager";
 
 interface TaskProviderProps {
   children: React.ReactNode;
@@ -48,7 +49,24 @@ export default function TaskProvider({ children }: TaskProviderProps) {
             if (task.id === state.activeTask?.id) {
               return {
                 ...task,
-                interruptDate: dayjs().format("DD/MM/YYYY"),
+                interruptDate: dayjs().format("DD/MM/YYYY - HH:mm"),
+              };
+            }
+            return task;
+          }),
+        };
+      }
+      case TaskActionType.COMPLETE_TASK: {
+        return {
+          ...state,
+          activeTask: null,
+          secondsRemaining: 0,
+          formattedSecondsRemaining: "00:00",
+          tasks: state.tasks.map((task) => {
+            if (task.id === state.activeTask?.id) {
+              return {
+                ...task,
+                completeDate: dayjs().format("DD/MM/YYYY - HH:mm"),
               };
             }
             return task;
@@ -72,13 +90,37 @@ export default function TaskProvider({ children }: TaskProviderProps) {
     config: {
       longBreak: 15,
       shortBreak: 5,
-      work: 25,
+      work: 0.1,
     },
     currentCycle: 0,
     formattedSecondsRemaining: "00:00",
     secondsRemaining: 0,
     tasks: [],
   });
+
+  const worker = TimerWorkerManager.getInstance();
+
+  worker.onmessage(({ data }) => {
+    if (data.secondsRemaining < 0) {
+      worker.terminate();
+      dispatch({
+        type: TaskActionType.COMPLETE_TASK,
+      });
+      return;
+    }
+    dispatch({
+      type: TaskActionType.UPDATE_TIME,
+      payload: data.secondsRemaining,
+    });
+  });
+
+  useEffect(() => {
+    if (!taskState.activeTask) {
+      worker.terminate();
+    }
+
+    worker.postMessage(taskState);
+  }, [taskState, worker]);
 
   return (
     <TaskContext.Provider value={{ taskState, dispatch }}>

@@ -1,3 +1,5 @@
+import type { TaskSateType } from "../types/TaskStateType";
+
 let instance: TimerWorkerManager | null = null;
 
 export class TimerWorkerManager {
@@ -15,7 +17,7 @@ export class TimerWorkerManager {
     return instance;
   }
 
-  postMessage(message: any) {
+  postMessage(message: TaskSateType) {
     this.worker.postMessage(message);
   }
 
