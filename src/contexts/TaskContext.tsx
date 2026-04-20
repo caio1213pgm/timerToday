@@ -1,10 +1,11 @@
 import dayjs from "dayjs";
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useRef } from "react";
 import { TaskActionType, type TaskActionModel } from "../actions/taskActions";
 import type { TaskSateType } from "../types/TaskStateType";
 import { formatTime } from "../utils/formatTime";
 import { nextCycle } from "../utils/nextCycle";
 import { TimerWorkerManager } from "../workers/TimerWorkerManager";
+import { loadBeep } from "../utils/loadBeep";
 
 interface TaskProviderProps {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export const TaskContext = createContext<TaskContextProps>({
 });
 
 export default function TaskProvider({ children }: TaskProviderProps) {
+  const soudBeepRef = useRef<() => void | null>(null);
   const taskReducer = (
     state: TaskSateType,
     action: TaskActionModel
@@ -102,6 +104,7 @@ export default function TaskProvider({ children }: TaskProviderProps) {
 
   worker.onmessage(({ data }) => {
     if (data.secondsRemaining < 0) {
+      soudBeepRef.current !== null && soudBeepRef.current();
       worker.terminate();
       dispatch({
         type: TaskActionType.COMPLETE_TASK,
@@ -121,6 +124,13 @@ export default function TaskProvider({ children }: TaskProviderProps) {
 
     worker.postMessage(taskState);
   }, [taskState, worker]);
+
+  useEffect(() => {
+    if (taskState.activeTask && soudBeepRef.current === null) {
+      soudBeepRef.current = loadBeep();
+    }
+    soudBeepRef.current = null;
+  }, [taskState.activeTask]);
 
   return (
     <TaskContext.Provider value={{ taskState, dispatch }}>
