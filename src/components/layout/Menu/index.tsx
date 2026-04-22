@@ -33,9 +33,9 @@ export default function Menu() {
 
   return (
     <nav className={style.navBox}>
-      <NavButton link="#" icon={<HouseIcon />} tooltip="Home" />
-      <NavButton link="#" icon={<HistoryIcon />} tooltip="History" />
-      <NavButton link="#" icon={<Settings />} tooltip="Settings" />
+      <NavButton link="/" icon={<HouseIcon />} tooltip="Home" />
+      <NavButton link="/history" icon={<HistoryIcon />} tooltip="History" />
+      <NavButton link="/settings" icon={<Settings />} tooltip="Settings" />
       <NavButton
         link="#"
         icon={iconSelectByTheme}

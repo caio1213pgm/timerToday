@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/Home";
 
 import "./styles/global.css";
@@ -6,7 +7,11 @@ import "./styles/theme.css";
 function App() {
   return (
     <>
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

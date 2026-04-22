@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import style from "./NavButton.module.css";
 
 interface NavButtonProps extends React.ComponentProps<"a"> {
@@ -14,9 +15,9 @@ export default function NavButton({
 }: NavButtonProps) {
   return (
     <>
-      <a href={link} className={style.navLink} title={tooltip} {...props}>
+      <NavLink to={link} className={style.navLink} title={tooltip} {...props}>
         {icon}
-      </a>
+      </NavLink>
     </>
   );
 }
