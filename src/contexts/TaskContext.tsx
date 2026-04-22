@@ -104,7 +104,11 @@ export default function TaskProvider({ children }: TaskProviderProps) {
 
   worker.onmessage(({ data }) => {
     if (data.secondsRemaining < 0) {
-      soudBeepRef.current !== null && soudBeepRef.current();
+      if (soudBeepRef.current !== null) {
+        soudBeepRef.current();
+        soudBeepRef.current = null;
+      }
+
       worker.terminate();
       dispatch({
         type: TaskActionType.COMPLETE_TASK,
@@ -128,6 +132,7 @@ export default function TaskProvider({ children }: TaskProviderProps) {
   useEffect(() => {
     if (taskState.activeTask && soudBeepRef.current === null) {
       soudBeepRef.current = loadBeep();
+      return;
     }
     soudBeepRef.current = null;
   }, [taskState.activeTask]);
