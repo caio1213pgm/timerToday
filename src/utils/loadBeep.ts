@@ -1,6 +1,7 @@
+import beepSound from "../assets/audios/gravitational_beep.mp3";
+
 export function loadBeep() {
-  // BAIXAR O AUDIO E ADICIONAR NA PASTA PUBLIC E COLOCAR
-  const beep = new Audio("");
+  const beep = new Audio(beepSound);
   beep.load();
 
   return () => {
