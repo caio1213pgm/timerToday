@@ -10,6 +10,7 @@ import { nextTypeCycle } from "../../../utils/nextTypeCycle";
 import Cycles from "../../Cycles";
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
+import { toast } from "react-toastify";
 
 export default function FormAddTask() {
   const { dispatch, taskState } = useTask();
@@ -21,7 +22,7 @@ export default function FormAddTask() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!inputTaskRef.current?.value.trim()) {
-      console.log("Digite o nome da sua task");
+      toast.warn("Digite o nome da sua task");
       return;
     }
     const newTask: TaskType = {
@@ -34,6 +35,7 @@ export default function FormAddTask() {
       type: getCycleType,
     };
     dispatch({ type: TaskActionType.START_TASK, payload: newTask });
+    toast.success("Task iniciada!");
   }
 
   function handleCancelTask(
@@ -47,6 +49,7 @@ export default function FormAddTask() {
     dispatch({
       type: TaskActionType.STOP_TASK,
     });
+    toast.error("Tarefa cancelada!");
     inputTaskRef.current?.value === "";
   }
 
