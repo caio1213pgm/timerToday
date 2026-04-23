@@ -1,13 +1,14 @@
+import { Link } from "react-router";
 import style from "./Footer.module.css";
 export default function Footer() {
   return (
     <footer className={style.footer}>
-      <a href="#" className={style.footerLink}>
+      <Link to="/about" className={style.footerLink}>
         Entenda como funciona a técnica de pomodoro
-      </a>
-      <a href="#" className={style.footerLink}>
+      </Link>
+      <Link to="/" className={style.footerLink}>
         TimerToday &copy; {new Date().getFullYear()}
-      </a>
+      </Link>
     </footer>
   );
 }
