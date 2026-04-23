@@ -124,9 +124,16 @@ export default function TaskProvider({ children }: TaskProviderProps) {
   useEffect(() => {
     if (!taskState.activeTask) {
       worker.terminate();
+      document.title = "TimerToday";
+      return;
     }
 
     worker.postMessage(taskState);
+
+    if (taskState.formattedSecondsRemaining !== "00:00") {
+      document.title = `${taskState.formattedSecondsRemaining} - TimerToday`;
+      return;
+    }
   }, [taskState, worker]);
 
   useEffect(() => {
