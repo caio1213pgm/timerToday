@@ -3,9 +3,9 @@ import { createContext, useEffect, useReducer, useRef } from "react";
 import { TaskActionType, type TaskActionModel } from "../actions/taskActions";
 import type { TaskSateType } from "../types/TaskStateType";
 import { formatTime } from "../utils/formatTime";
+import { loadBeep } from "../utils/loadBeep";
 import { nextCycle } from "../utils/nextCycle";
 import { TimerWorkerManager } from "../workers/TimerWorkerManager";
-import { loadBeep } from "../utils/loadBeep";
 
 interface TaskProviderProps {
   children: React.ReactNode;
@@ -80,6 +80,12 @@ export default function TaskProvider({ children }: TaskProviderProps) {
           ...state,
           secondsRemaining: action.payload,
           formattedSecondsRemaining: formatTime(action.payload),
+        };
+      }
+      case TaskActionType.EDIT_CONFIG: {
+        return {
+          ...state,
+          config: action.payload,
         };
       }
       default:

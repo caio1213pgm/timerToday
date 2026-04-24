@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import Home from "../pages/Home";
+import SettingsPage from "../pages/Settings";
 import { About } from "../pages/about/About";
-import { useEffect } from "react";
 
 function ScroolTop() {
   const { pathname } = useLocation();
@@ -19,6 +20,7 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Routes>
       <ScroolTop />
     </BrowserRouter>

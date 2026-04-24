@@ -5,6 +5,7 @@ export enum TaskActionType {
   STOP_TASK = "STOP_TASK",
   UPDATE_TIME = "UPDATE_TIME",
   COMPLETE_TASK = "COMPLETE_TASK",
+  EDIT_CONFIG = "EDIT_CONFIG",
 }
 
 export type TaskActionModel =
@@ -21,4 +22,12 @@ export type TaskActionModel =
     }
   | {
       type: TaskActionType.COMPLETE_TASK;
+    }
+  | {
+      type: TaskActionType.EDIT_CONFIG;
+      payload: {
+        work: number;
+        shortBreak: number;
+        longBreak: number;
+      };
     };
