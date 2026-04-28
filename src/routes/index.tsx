@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import { About } from "../pages/about/About";
-import History from "../pages/History";
+import History from "../pages/history/History";
 import Home from "../pages/Home";
 import SettingsPage from "../pages/Settings";
 

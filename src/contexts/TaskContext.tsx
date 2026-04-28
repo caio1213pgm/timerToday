@@ -93,18 +93,46 @@ export default function TaskProvider({ children }: TaskProviderProps) {
     }
   };
 
-  const [taskState, dispatch] = useReducer(taskReducer, {
-    activeTask: null,
-    config: {
-      longBreak: 15,
-      shortBreak: 5,
-      work: 0.1,
+  const [taskState, dispatch] = useReducer(
+    taskReducer,
+    {
+      activeTask: null,
+      config: {
+        longBreak: 15,
+        shortBreak: 5,
+        work: 0.2,
+      },
+      currentCycle: 0,
+      formattedSecondsRemaining: "00:00",
+      secondsRemaining: 0,
+      tasks: [],
     },
-    currentCycle: 0,
-    formattedSecondsRemaining: "00:00",
-    secondsRemaining: 0,
-    tasks: [],
-  });
+    () => {
+      const taskStorage = JSON.parse(
+        localStorage.getItem("taskState")!
+      ) as TaskSateType | null;
+      if (!taskStorage) {
+        return {
+          activeTask: null,
+          config: {
+            longBreak: 15,
+            shortBreak: 5,
+            work: 0.2,
+          },
+          currentCycle: 0,
+          formattedSecondsRemaining: "00:00",
+          secondsRemaining: 0,
+          tasks: [],
+        };
+      }
+      return {
+        ...taskStorage,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        activeTask: null,
+      };
+    }
+  );
 
   const worker = TimerWorkerManager.getInstance();
 
@@ -126,6 +154,11 @@ export default function TaskProvider({ children }: TaskProviderProps) {
       payload: data.secondsRemaining,
     });
   });
+
+  useEffect(() => {
+    localStorage.setItem("taskState", JSON.stringify(taskState));
+    console.log(taskState);
+  }, [taskState]);
 
   useEffect(() => {
     if (!taskState.activeTask) {
