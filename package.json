@@ -11,6 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@ag-grid-community/locale": "^35.2.1",
     "ag-grid-react": "^35.2.1",
     "dayjs": "^1.11.20",
     "lucide-react": "^0.562.0",

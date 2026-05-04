@@ -1,3 +1,9 @@
 .ag_theme_alpine {
   background-color: var(--gray-700);
+  height: 500px;
+  width: 100%;
+  min-width: 64rem;
+  border: 3px solid var(--gray-700);
+  border-radius: 1rem;
+  overflow: auto;
 }

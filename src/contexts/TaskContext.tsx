@@ -100,7 +100,7 @@ export default function TaskProvider({ children }: TaskProviderProps) {
       config: {
         longBreak: 15,
         shortBreak: 5,
-        work: 0.2,
+        work: 25,
       },
       currentCycle: 0,
       formattedSecondsRemaining: "00:00",
@@ -117,7 +117,7 @@ export default function TaskProvider({ children }: TaskProviderProps) {
           config: {
             longBreak: 15,
             shortBreak: 5,
-            work: 0.2,
+            work: 25,
           },
           currentCycle: 0,
           formattedSecondsRemaining: "00:00",
@@ -157,8 +157,7 @@ export default function TaskProvider({ children }: TaskProviderProps) {
 
   useEffect(() => {
     localStorage.setItem("taskState", JSON.stringify(taskState));
-    console.log(taskState);
-  }, [taskState]);
+  }, [taskState.activeTask, taskState.config]);
 
   useEffect(() => {
     if (!taskState.activeTask) {
