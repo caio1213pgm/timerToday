@@ -1,10 +1,14 @@
 import { TrashIcon } from "lucide-react";
 import Button from "../../ui/Button";
 import style from "./headerHistory.module.css";
+import { useTask } from "../../../hooks/useTask";
+import { TaskActionType } from "../../../actions/taskActions";
 
 export default function HeaderHistory() {
+  const { dispatch } = useTask();
+
   function deleteHistory() {
-    localStorage.removeItem("taskState");
+    dispatch({ type: TaskActionType.CLEAR_HISTORY });
   }
   return (
     <div className={style.headerHistory}>

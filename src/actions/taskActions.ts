@@ -6,6 +6,7 @@ export enum TaskActionType {
   UPDATE_TIME = "UPDATE_TIME",
   COMPLETE_TASK = "COMPLETE_TASK",
   EDIT_CONFIG = "EDIT_CONFIG",
+  CLEAR_HISTORY = "CLEAR_HISTORY",
 }
 
 export type TaskActionModel =
@@ -30,4 +31,7 @@ export type TaskActionModel =
         shortBreak: number;
         longBreak: number;
       };
+    }
+  | {
+      type: TaskActionType.CLEAR_HISTORY;
     };

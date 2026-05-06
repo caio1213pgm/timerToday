@@ -88,6 +88,27 @@ export default function TaskProvider({ children }: TaskProviderProps) {
           config: action.payload,
         };
       }
+      case TaskActionType.CLEAR_HISTORY: {
+        localStorage.setItem(
+          "taskState",
+          JSON.stringify({
+            ...state,
+            activeTask: null,
+            currentCycle: 0,
+            formattedSecondsRemaining: "00:00",
+            secondsRemaining: 0,
+            tasks: [],
+          })
+        );
+        return {
+          ...state,
+          tasks: [],
+          activeTask: null,
+          secondsRemaining: 0,
+          formattedSecondsRemaining: "00:00",
+          currentCycle: 0,
+        };
+      }
       default:
         return state;
     }
