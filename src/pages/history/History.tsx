@@ -9,6 +9,7 @@ import { formatTime } from "../../utils/formatTime";
 import { AgGridReact } from "ag-grid-react";
 import { AG_GRID_LOCALE_BR } from "@ag-grid-community/locale";
 import getStatusTask from "../../utils/getStatusTask";
+import { dateComparator } from "../../utils/dateComparator";
 
 interface IRow {
   id: string | number;
@@ -44,14 +45,16 @@ export default function History() {
 
   // Column Definitions: Defines the columns to be displayed.
   const colDefs: ColDef<IRow>[] = [
-    { field: "tarefa", headerName: "Tarefa" },
+    { field: "tarefa", headerName: "Tarefa", sortable: true },
     { field: "duracao", headerName: "Duração" },
     {
       field: "data",
       headerName: "Data",
+      comparator: dateComparator,
+      sortable: true,
     },
-    { field: "satus", headerName: "Status", width: 169 },
-    { field: "tipo", headerName: "Tipo", width: 169 },
+    { field: "satus", headerName: "Status", width: 169, sortable: true },
+    { field: "tipo", headerName: "Tipo", width: 169, sortable: true },
   ];
 
   const myTheme = themeMaterial.withParams({

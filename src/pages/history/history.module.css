@@ -5,5 +5,5 @@
   min-width: 64rem;
   border: 3px solid var(--gray-700);
   border-radius: 1rem;
-  overflow: auto;
+  overflow: hidden;
 }
