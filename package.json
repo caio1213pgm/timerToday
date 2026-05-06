@@ -11,9 +11,15 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@ag-grid-community/locale": "^35.2.1",
+    "ag-grid-react": "^35.2.1",
+    "dayjs": "^1.11.20",
     "lucide-react": "^0.562.0",
+    "nanoid": "^5.1.7",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-router": "^7.14.2",
+    "react-toastify": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

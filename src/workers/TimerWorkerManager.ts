@@ -1,0 +1,32 @@
+import type { TaskSateType } from "../types/TaskStateType";
+
+let instance: TimerWorkerManager | null = null;
+
+export class TimerWorkerManager {
+  private worker: Worker;
+  private constructor() {
+    this.worker = new Worker(
+      new URL("../workers/timerWorker.js", import.meta.url)
+    );
+  }
+
+  public static getInstance(): TimerWorkerManager {
+    if (!instance) {
+      instance = new TimerWorkerManager();
+    }
+    return instance;
+  }
+
+  postMessage(message: TaskSateType) {
+    this.worker.postMessage(message);
+  }
+
+  onmessage(callback: (event: MessageEvent) => void) {
+    this.worker.onmessage = callback;
+  }
+
+  terminate() {
+    this.worker.terminate();
+    instance = null;
+  }
+}

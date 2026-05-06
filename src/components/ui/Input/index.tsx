@@ -7,6 +7,9 @@ interface InputProps {
   id: string;
   placeholder?: string;
   disabled?: boolean;
+  onChange?: (value: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 export default function Input({
@@ -15,6 +18,9 @@ export default function Input({
   id,
   placeholder,
   disabled,
+  onChange,
+  value,
+  ref,
 }: InputProps) {
   return (
     <div className={style.inputBox}>
@@ -25,6 +31,10 @@ export default function Input({
         placeholder={placeholder}
         className={style.input}
         disabled={disabled}
+        onChange={onChange}
+        value={value}
+        ref={ref}
+        autoComplete="off"
       />
     </div>
   );

@@ -13,22 +13,22 @@
   gap: 1rem;
 }
 
-.cycleShort,
-.cycleWork,
-.cycleLong {
+.shortBreak,
+.work,
+.longBreak {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
 }
 
-.cycleShort{
-  background-color: var(--primary);
-}
-
-.cycleWork{
+.shortBreak {
   background-color: var(--warning);
 }
 
-.cycleLong{
+.work {
+  background-color: var(--primary);
+}
+
+.longBreak {
   background-color: var(--info);
 }

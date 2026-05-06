@@ -1,0 +1,11 @@
+.headerHistory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+
+.headerHistory button {
+  min-width: auto;
+}
