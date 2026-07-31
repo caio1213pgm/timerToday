@@ -1,31 +1,34 @@
 import type { TaskType } from "../types/TaskType";
 
-export enum TaskActionType {
-  START_TASK = "START_TASK",
-  STOP_TASK = "STOP_TASK",
-  UPDATE_TIME = "UPDATE_TIME",
-  COMPLETE_TASK = "COMPLETE_TASK",
-  EDIT_CONFIG = "EDIT_CONFIG",
-  CLEAR_HISTORY = "CLEAR_HISTORY",
-}
+export const TaskActionType = {
+  START_TASK: "START_TASK",
+  STOP_TASK: "STOP_TASK",
+  UPDATE_TIME: "UPDATE_TIME",
+  COMPLETE_TASK: "COMPLETE_TASK",
+  EDIT_CONFIG: "EDIT_CONFIG",
+  CLEAR_HISTORY: "CLEAR_HISTORY",
+} as const;
+
+export type TaskActionType =
+  (typeof TaskActionType)[keyof typeof TaskActionType];
 
 export type TaskActionModel =
   | {
-      type: TaskActionType.START_TASK;
+      type: typeof TaskActionType.START_TASK;
       payload: TaskType;
     }
   | {
-      type: TaskActionType.STOP_TASK;
+      type: typeof TaskActionType.STOP_TASK;
     }
   | {
-      type: TaskActionType.UPDATE_TIME;
+      type: typeof TaskActionType.UPDATE_TIME;
       payload: number;
     }
   | {
-      type: TaskActionType.COMPLETE_TASK;
+      type: typeof TaskActionType.COMPLETE_TASK;
     }
   | {
-      type: TaskActionType.EDIT_CONFIG;
+      type: typeof TaskActionType.EDIT_CONFIG;
       payload: {
         work: number;
         shortBreak: number;
@@ -33,5 +36,5 @@ export type TaskActionModel =
       };
     }
   | {
-      type: TaskActionType.CLEAR_HISTORY;
+      type: typeof TaskActionType.CLEAR_HISTORY;
     };

@@ -27,7 +27,7 @@ export default function Cycles({ cicle }: CyclesProps) {
     <div className={style.boxCycles}>
       <span>Ciclos:</span>
       <div className={style.cycles}>
-        {cyclesStates.map((type, index) => {
+        {cyclesStates.map((_, index) => {
           const nextCicle = nextCycle(index);
           const typeCycle = nextTypeCycle(nextCicle);
           return (
