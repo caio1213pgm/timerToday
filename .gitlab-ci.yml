@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - deploy
 
 build:
   stage: build
@@ -13,3 +14,9 @@ test:
   image: node:20-alpine
   script:
     - echo "testando aplicação"
+
+deploy:
+  stage: deploy
+  image: node:20-alpine
+  script:
+    - echo "fazendo deploy da aplicação"
