@@ -7,7 +7,8 @@ build:
   stage: build
   image: node:20-alpine
   script:
-    - echo "buildando aplicação"
+    - npm run build
+    - echo "build successful"
 
 test:
   stage: test
