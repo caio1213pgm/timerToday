@@ -15,7 +15,9 @@ test:
   stage: test
   image: node:20-alpine
   script:
-    - echo "testando aplicação"
+    - npm ci
+    - npm run lint
+    - echo "lint successful"
 
 deploy:
   stage: deploy
