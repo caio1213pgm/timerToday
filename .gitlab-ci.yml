@@ -24,3 +24,4 @@ deploy:
   image: node:20-alpine
   script:
     - echo "fazendo deploy da aplicação"
+    - echo "testando variáveis ${VPS_HOST_TT}"
