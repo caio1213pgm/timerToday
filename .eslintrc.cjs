@@ -24,7 +24,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off", // Not needed in projects using React 17+
     "react/prop-types": "off", // Disable prop-types rule if you're using TypeScript]
     "prettier/prettier": "error",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
   },
   settings: {
     react: {
