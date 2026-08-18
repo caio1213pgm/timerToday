@@ -1,0 +1,6 @@
+﻿Fix: install eslint-plugin-prettier and migrate to flat ESLint config
+
+- Installed eslint-plugin-prettier and @eslint/eslintrc
+- Added eslint.config.cjs and configured FlatCompat
+- Removed legacy .eslintrc.cjs
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
