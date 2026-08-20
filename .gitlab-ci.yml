@@ -27,7 +27,7 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - test -f "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável existe"
-    - test -s "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável não está vazio
+    - test -s "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável não está vazio"
     - install -m 600 "$SSH_PRIVATE_KEY_TT" ~/.ssh/id_ed25519
     - ssh-keygen -y -f ~/.ssh/id_ed25519 > /dev/null
   script:
