@@ -26,8 +26,16 @@ deploy:
     - apk add --no-cache openssh-client
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - test -f "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável existe"
-    - test -s "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável não está vazio"
+
+    - test -f "$SSH_PRIVATE_KEY_TT" && echo "Arquivo existe"
+    - test -s "$SSH_PRIVATE_KEY_TT" && echo "Arquivo não está vazio"
+
+    - echo "Tamanho: $(wc -c < "$SSH_PRIVATE_KEY_TT") bytes"
+    - echo "Linhas: $(wc -l < "$SSH_PRIVATE_KEY_TT")"
+
+    - head -n 1 "$SSH_PRIVATE_KEY_TT" | grep -q "BEGIN OPENSSH PRIVATE KEY" && echo "Cabeçalho válido"
+    - tail -n 1 "$SSH_PRIVATE_KEY_TT" | grep -q "END OPENSSH PRIVATE KEY" && echo "Rodapé válido"
+
     - install -m 600 "$SSH_PRIVATE_KEY_TT" ~/.ssh/id_ed25519
     - ssh-keygen -y -f ~/.ssh/id_ed25519 > /dev/null
   script:
