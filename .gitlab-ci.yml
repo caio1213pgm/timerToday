@@ -27,7 +27,7 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - install -m 600 "$SSH_PRIVATE_KEY_TT" ~/.ssh/id_ed25519
-      - ssh-keygen -l -f ~/.ssh/id_ed25519
+    - ssh-keygen -l -f ~/.ssh/id_ed25519
   script:
     - echo "Chave SSH carregada com sucesso"
     # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "cd /home/caio/projetos/timerToday && git pull origin main"
