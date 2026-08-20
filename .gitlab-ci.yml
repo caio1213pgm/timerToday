@@ -22,14 +22,20 @@ test:
 deploy:
   stage: deploy
   image: alpine:latest
+  only:
+    - main
   before_script:
     - apk add --no-cache openssh-client
-    - chmod 600 "$SSH_PRIVATE_KEY_TT"
-    - ssh-keygen -y -f "$SSH_PRIVATE_KEY_TT" > /dev/null
-    - echo "Chave SSH válida"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $VPS_HOST >> ~/.ssh/known_hosts
   script:
-    - echo "Chave SSH carregada com sucesso"
-    # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "cd /home/caio/projetos/timerToday && git pull origin main"
-    # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "docker stop timertoday || true"
-    # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "docker rm timertoday || true"
-    # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "docker run -d --name timertoday -p 3000:80 --restart unless-stopped timertoday:latest"
+    - ssh $VPS_USER@$VPS_HOST "
+        cd /home/caio/projetos/timertoday-docker &&
+        git pull origin main &&
+        docker build -t timertoday-app . &&
+        docker stop timertoday || true &&
+        docker rm timertoday || true &&
+        docker run -d --name timertoday -p 127.0.0.1:3000:80 --restart unless-stopped timertoday-app"
