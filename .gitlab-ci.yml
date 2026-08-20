@@ -24,15 +24,9 @@ deploy:
   image: alpine:latest
   before_script:
     - apk add --no-cache openssh-client
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - test -f "$SSH_PRIVATE_KEY_TT" && echo "Arquivo existe"
-    - test -s "$SSH_PRIVATE_KEY_TT" && echo "Arquivo não está vazio"
-    - head -n 1 "$SSH_PRIVATE_KEY_TT" | grep -q "BEGIN OPENSSH PRIVATE KEY" && echo "Cabeçalho válido"
-    - tail -n 1 "$SSH_PRIVATE_KEY_TT" | grep -q "END OPENSSH PRIVATE KEY" && echo "Rodapé válido"
-
-    - install -m 600 "$SSH_PRIVATE_KEY_TT" ~/.ssh/id_ed25519
-    - ssh-keygen -y -f ~/.ssh/id_ed25519 > /dev/null
+    - chmod 600 "$SSH_PRIVATE_KEY_TT"
+    - ssh-keygen -y -f "$SSH_PRIVATE_KEY_TT" > /dev/null
+    - echo "Chave SSH válida"
   script:
     - echo "Chave SSH carregada com sucesso"
     # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "cd /home/caio/projetos/timerToday && git pull origin main"
