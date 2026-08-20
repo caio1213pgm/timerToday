@@ -26,8 +26,10 @@ deploy:
     - apk add --no-cache openssh-client
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
+    - test -f "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável existe"
+    - test -s "$SSH_PRIVATE_KEY_TT" && echo "Arquivo da variável não está vazio
     - install -m 600 "$SSH_PRIVATE_KEY_TT" ~/.ssh/id_ed25519
-    - ssh-keygen -l -f ~/.ssh/id_ed25519
+    - ssh-keygen -y -f ~/.ssh/id_ed25519 > /dev/null
   script:
     - echo "Chave SSH carregada com sucesso"
     # - ssh "$VPS_USER_TT@$VPS_HOST_TT" "cd /home/caio/projetos/timerToday && git pull origin main"
