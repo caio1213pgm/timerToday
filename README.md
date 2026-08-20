@@ -3,6 +3,7 @@
 TimerToday é basicamente um gerenciador de tasks simples e eficiente.
 
 Futuramente, o projeto contará com:
+
 - **Histórico de tasks**
 - **Espaço para anotações**
 - **Conexão com o Firebase** para salvar todas as suas tasks e anotações na nuvem, sem perder nada.
@@ -24,16 +25,19 @@ Futuramente, o projeto contará com:
 ## 🛠️ Como executar o projeto
 
 1. Clone o repositório (caso ainda não tenha feito):
+
    ```bash
    git clone <url-do-repositorio>
    ```
 
 2. Instale as dependências:
+
    ```bash
    npm install
    ```
 
 3. Inicie o servidor de desenvolvimento:
+
    ```bash
    npm run dev
    ```
