@@ -7,16 +7,35 @@ build:
   stage: build
   image: node:20-alpine
   script:
-    - echo "buildando aplicação"
+    - npm ci
+    - npm run build
+    - echo "build successful"
 
 test:
   stage: test
   image: node:20-alpine
   script:
-    - echo "testando aplicação"
+    - npm ci
+    - npm run lint
+    - echo "lint successful"
 
 deploy:
   stage: deploy
-  image: node:20-alpine
+  image: alpine:latest
+  only:
+    - main
+  before_script:
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $VPS_HOST >> ~/.ssh/known_hosts
   script:
-    - echo "fazendo deploy da aplicação"
+    - ssh $VPS_USER@$VPS_HOST "
+        cd /home/caio/projetos/timerToday &&
+        docker stop timertoday || true &&
+        docker rm timertoday || true &&
+        git pull origin main &&
+        docker build -t timer-today . &&
+        docker run -d --name timertoday -p 8080:80 --restart unless-stopped timer-today"
