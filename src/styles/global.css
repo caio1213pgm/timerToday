@@ -23,6 +23,7 @@ body {
     sans-serif;
   background: var(--gray-900);
   color: var(--text-default);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .formGroup {

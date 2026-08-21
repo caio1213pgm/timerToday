@@ -18,8 +18,13 @@
   text-align: center;
 
   background-color: transparent;
-  color: var(--text-over-primary);
+  color: var(--text-default);
   transition: all 0.2s ease-in-out;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
 .input:focus {

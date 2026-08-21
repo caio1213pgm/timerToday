@@ -31,5 +31,5 @@
 
 .error {
   background-color: var(--error);
-  color: var(--text-over-warning);
+  color: var(--text-over-error);
 }
